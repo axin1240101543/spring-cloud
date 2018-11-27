@@ -1,0 +1,10 @@
+############## Mybatis ##############
+mybatis:
+  mapper-locations: ${mybatis.mapper-locations}
+  type-aliases-package: ${mybatis.type-aliases-package}
+spring:
+  datasource: #连接池   https://blog.csdn.net/tb_520/article/details/79676543（spring boot 2.1.0 新版配置）
+    driver-class-name: ${spring.datasource.driver-class-name}
+    url: ${spring.datasource.url}
+    username: ${spring.datasource.username}
+    password: ${spring.datasource.password}

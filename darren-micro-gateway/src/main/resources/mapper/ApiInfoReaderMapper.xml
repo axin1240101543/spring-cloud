@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.micro.darren.gateway.dao.read.ApiInfoReaderDao">
+  <resultMap id="BaseResultMap" type="com.micro.darren.gateway.entity.ApiInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="wsdl" jdbcType="VARCHAR" property="wsdl" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="request_total" jdbcType="BIGINT" property="requestTotal" />
+    <result column="request_method" jdbcType="VARCHAR" property="requestMethod" />
+    <result column="create_id" jdbcType="BIGINT" property="createId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.micro.darren.gateway.entity.ApiInfo">
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, url, wsdl, level, request_total, request_method, create_id, create_time, 
+    update_time, status
+  </sql>
+  <sql id="Blob_Column_List">
+    description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from drug_api_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="getApiInfoList" parameterType="java.util.Map" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from drug_api_info
+    where status &lt; #{status}
+  </select>
+</mapper>

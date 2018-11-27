@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: darren-micro-user #{application}, which maps to spring.application.name on the client side.
+  cloud:
+    config:
+      uri: http://localhost:8764 #使用url style认证config server（http://root:1234@localhost:8764）
+      label: master #{label}：which is a server side feature labelling a "versioned" set of config files.
+      profile: dev #{profile}：which maps to spring.profiles.active on the client (comma-separated list).
+      username: root #（认证config server，优先级比url style高）
+      password: 1234

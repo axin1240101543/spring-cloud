@@ -1,0 +1,38 @@
+############## Base Config ##############
+server:
+  port: 7771  #端口
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:1234@register1:8761/eureka/,http://root:1234@register2:8762/eureka/,http://root:1234@register3:8763/eureka/ #注册到Eureka
+    healthcheck:
+      enabled: true #开启健康检查
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}   #instance id显示
+    prefer-ip-address: true #使用ip注册到Eureka，而不是主机名称
+
+#使用service-id去spring cloud server 获取配置
+spring:
+  application:
+    name: darren-micro-order #{application}, which maps to spring.application.name on the client side.
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: darren-micro-config #使用spring.application.name来进行调用时，无法使用url style进行认证，只能配置username、password
+      label: master #{label}：which is a server side feature labelling a "versioned" set of config files.
+      profile: dev #{profile}：which maps to spring.profiles.active on the client (comma-separated list).
+      username: root #（认证config server，优先级比url style高）
+      password: 1234
+
+#使用uri去spring cloud server 获取配置
+#spring:
+#  application:
+#    name: darren-micro-order #{application}, which maps to spring.application.name on the client side.
+#  cloud:
+#    config:
+#      uri: http://localhost:8764 #使用url style认证config server（http://root:1234@localhost:8764）
+#      label: master #{label}：which is a server side feature labelling a "versioned" set of config files.
+#      profile: dev #{profile}：which maps to spring.profiles.active on the client (comma-separated list).
+#      username: root #（认证config server，优先级比url style高）
+#      password: 1234

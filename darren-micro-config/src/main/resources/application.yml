@@ -1,0 +1,12 @@
+############## Base Config ##############
+server:
+  port: 8764 #端口
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:1234@register1:8761/eureka/,http://root:1234@register2:8762/eureka/,http://root:1234@register3:8763/eureka/ #注册到Eureka
+    healthcheck:
+      enabled: true #开启健康检查
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}   #instance id显示
+    prefer-ip-address: true #使用ip注册到Eureka，而不是主机名称

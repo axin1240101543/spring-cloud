@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.micro.darren.order.dao.write.OrderWriterDao">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from dyf_order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.micro.darren.order.entity.Order">
+    insert into dyf_order (order_id, uid, shop_addr_id, 
+      create_time, status, pay_status, 
+      recipe_pic_status, entry_id, audit_id, 
+      adjust_id, distribution_id, end_date, 
+      order_weight, order_number, logistics_cost, 
+      source_id, order_time, treat_card, 
+      reg_num, urgent_flag, addr_str, 
+      provinces, city, zone, 
+      consignee, con_tel, delivery_remark, 
+      company_num, send_goods_time, way_bill_no, 
+      logistic_status, consume_flag, storagetype, 
+      is_hos_addr, callback_url, modify_time, 
+      reason, classes, order_remark, 
+      is_szzy, logis_url_callback, custom_sign, 
+      layer_num, message, medicine_cab_num, 
+      machine_type, scan_batch_update)
+    values (#{orderId,jdbcType=VARCHAR}, #{uid,jdbcType=INTEGER}, #{shopAddrId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=SMALLINT}, #{payStatus,jdbcType=SMALLINT}, 
+      #{recipePicStatus,jdbcType=SMALLINT}, #{entryId,jdbcType=INTEGER}, #{auditId,jdbcType=INTEGER}, 
+      #{adjustId,jdbcType=INTEGER}, #{distributionId,jdbcType=INTEGER}, #{endDate,jdbcType=TIMESTAMP}, 
+      #{orderWeight,jdbcType=VARCHAR}, #{orderNumber,jdbcType=VARCHAR}, #{logisticsCost,jdbcType=DECIMAL}, 
+      #{sourceId,jdbcType=INTEGER}, #{orderTime,jdbcType=VARCHAR}, #{treatCard,jdbcType=VARCHAR}, 
+      #{regNum,jdbcType=VARCHAR}, #{urgentFlag,jdbcType=SMALLINT}, #{addrStr,jdbcType=VARCHAR}, 
+      #{provinces,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{zone,jdbcType=VARCHAR}, 
+      #{consignee,jdbcType=VARCHAR}, #{conTel,jdbcType=VARCHAR}, #{deliveryRemark,jdbcType=VARCHAR}, 
+      #{companyNum,jdbcType=VARCHAR}, #{sendGoodsTime,jdbcType=VARCHAR}, #{wayBillNo,jdbcType=VARCHAR}, 
+      #{logisticStatus,jdbcType=SMALLINT}, #{consumeFlag,jdbcType=SMALLINT}, #{storagetype,jdbcType=INTEGER}, 
+      #{isHosAddr,jdbcType=INTEGER}, #{callbackUrl,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{reason,jdbcType=VARCHAR}, #{classes,jdbcType=INTEGER}, #{orderRemark,jdbcType=VARCHAR}, 
+      #{isSzzy,jdbcType=SMALLINT}, #{logisUrlCallback,jdbcType=VARCHAR}, #{customSign,jdbcType=INTEGER}, 
+      #{layerNum,jdbcType=SMALLINT}, #{message,jdbcType=VARCHAR}, #{medicineCabNum,jdbcType=VARCHAR}, 
+      #{machineType,jdbcType=VARCHAR}, #{scanBatchUpdate,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.micro.darren.order.entity.Order">
+    insert into dyf_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="shopAddrId != null">
+        shop_addr_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="payStatus != null">
+        pay_status,
+      </if>
+      <if test="recipePicStatus != null">
+        recipe_pic_status,
+      </if>
+      <if test="entryId != null">
+        entry_id,
+      </if>
+      <if test="auditId != null">
+        audit_id,
+      </if>
+      <if test="adjustId != null">
+        adjust_id,
+      </if>
+      <if test="distributionId != null">
+        distribution_id,
+      </if>
+      <if test="endDate != null">
+        end_date,
+      </if>
+      <if test="orderWeight != null">
+        order_weight,
+      </if>
+      <if test="orderNumber != null">
+        order_number,
+      </if>
+      <if test="logisticsCost != null">
+        logistics_cost,
+      </if>
+      <if test="sourceId != null">
+        source_id,
+      </if>
+      <if test="orderTime != null">
+        order_time,
+      </if>
+      <if test="treatCard != null">
+        treat_card,
+      </if>
+      <if test="regNum != null">
+        reg_num,
+      </if>
+      <if test="urgentFlag != null">
+        urgent_flag,
+      </if>
+      <if test="addrStr != null">
+        addr_str,
+      </if>
+      <if test="provinces != null">
+        provinces,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="zone != null">
+        zone,
+      </if>
+      <if test="consignee != null">
+        consignee,
+      </if>
+      <if test="conTel != null">
+        con_tel,
+      </if>
+      <if test="deliveryRemark != null">
+        delivery_remark,
+      </if>
+      <if test="companyNum != null">
+        company_num,
+      </if>
+      <if test="sendGoodsTime != null">
+        send_goods_time,
+      </if>
+      <if test="wayBillNo != null">
+        way_bill_no,
+      </if>
+      <if test="logisticStatus != null">
+        logistic_status,
+      </if>
+      <if test="consumeFlag != null">
+        consume_flag,
+      </if>
+      <if test="storagetype != null">
+        storagetype,
+      </if>
+      <if test="isHosAddr != null">
+        is_hos_addr,
+      </if>
+      <if test="callbackUrl != null">
+        callback_url,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="classes != null">
+        classes,
+      </if>
+      <if test="orderRemark != null">
+        order_remark,
+      </if>
+      <if test="isSzzy != null">
+        is_szzy,
+      </if>
+      <if test="logisUrlCallback != null">
+        logis_url_callback,
+      </if>
+      <if test="customSign != null">
+        custom_sign,
+      </if>
+      <if test="layerNum != null">
+        layer_num,
+      </if>
+      <if test="message != null">
+        message,
+      </if>
+      <if test="medicineCabNum != null">
+        medicine_cab_num,
+      </if>
+      <if test="machineType != null">
+        machine_type,
+      </if>
+      <if test="scanBatchUpdate != null">
+        scan_batch_update,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="shopAddrId != null">
+        #{shopAddrId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="payStatus != null">
+        #{payStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="recipePicStatus != null">
+        #{recipePicStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="entryId != null">
+        #{entryId,jdbcType=INTEGER},
+      </if>
+      <if test="auditId != null">
+        #{auditId,jdbcType=INTEGER},
+      </if>
+      <if test="adjustId != null">
+        #{adjustId,jdbcType=INTEGER},
+      </if>
+      <if test="distributionId != null">
+        #{distributionId,jdbcType=INTEGER},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderWeight != null">
+        #{orderWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNumber != null">
+        #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsCost != null">
+        #{logisticsCost,jdbcType=DECIMAL},
+      </if>
+      <if test="sourceId != null">
+        #{sourceId,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null">
+        #{orderTime,jdbcType=VARCHAR},
+      </if>
+      <if test="treatCard != null">
+        #{treatCard,jdbcType=VARCHAR},
+      </if>
+      <if test="regNum != null">
+        #{regNum,jdbcType=VARCHAR},
+      </if>
+      <if test="urgentFlag != null">
+        #{urgentFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="addrStr != null">
+        #{addrStr,jdbcType=VARCHAR},
+      </if>
+      <if test="provinces != null">
+        #{provinces,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="zone != null">
+        #{zone,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null">
+        #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="conTel != null">
+        #{conTel,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryRemark != null">
+        #{deliveryRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="companyNum != null">
+        #{companyNum,jdbcType=VARCHAR},
+      </if>
+      <if test="sendGoodsTime != null">
+        #{sendGoodsTime,jdbcType=VARCHAR},
+      </if>
+      <if test="wayBillNo != null">
+        #{wayBillNo,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticStatus != null">
+        #{logisticStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="consumeFlag != null">
+        #{consumeFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="storagetype != null">
+        #{storagetype,jdbcType=INTEGER},
+      </if>
+      <if test="isHosAddr != null">
+        #{isHosAddr,jdbcType=INTEGER},
+      </if>
+      <if test="callbackUrl != null">
+        #{callbackUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="classes != null">
+        #{classes,jdbcType=INTEGER},
+      </if>
+      <if test="orderRemark != null">
+        #{orderRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="isSzzy != null">
+        #{isSzzy,jdbcType=SMALLINT},
+      </if>
+      <if test="logisUrlCallback != null">
+        #{logisUrlCallback,jdbcType=VARCHAR},
+      </if>
+      <if test="customSign != null">
+        #{customSign,jdbcType=INTEGER},
+      </if>
+      <if test="layerNum != null">
+        #{layerNum,jdbcType=SMALLINT},
+      </if>
+      <if test="message != null">
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineCabNum != null">
+        #{medicineCabNum,jdbcType=VARCHAR},
+      </if>
+      <if test="machineType != null">
+        #{machineType,jdbcType=VARCHAR},
+      </if>
+      <if test="scanBatchUpdate != null">
+        #{scanBatchUpdate,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.micro.darren.order.entity.Order">
+    update dyf_order
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="shopAddrId != null">
+        shop_addr_id = #{shopAddrId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="payStatus != null">
+        pay_status = #{payStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="recipePicStatus != null">
+        recipe_pic_status = #{recipePicStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="entryId != null">
+        entry_id = #{entryId,jdbcType=INTEGER},
+      </if>
+      <if test="auditId != null">
+        audit_id = #{auditId,jdbcType=INTEGER},
+      </if>
+      <if test="adjustId != null">
+        adjust_id = #{adjustId,jdbcType=INTEGER},
+      </if>
+      <if test="distributionId != null">
+        distribution_id = #{distributionId,jdbcType=INTEGER},
+      </if>
+      <if test="endDate != null">
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderWeight != null">
+        order_weight = #{orderWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNumber != null">
+        order_number = #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsCost != null">
+        logistics_cost = #{logisticsCost,jdbcType=DECIMAL},
+      </if>
+      <if test="sourceId != null">
+        source_id = #{sourceId,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null">
+        order_time = #{orderTime,jdbcType=VARCHAR},
+      </if>
+      <if test="treatCard != null">
+        treat_card = #{treatCard,jdbcType=VARCHAR},
+      </if>
+      <if test="regNum != null">
+        reg_num = #{regNum,jdbcType=VARCHAR},
+      </if>
+      <if test="urgentFlag != null">
+        urgent_flag = #{urgentFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="addrStr != null">
+        addr_str = #{addrStr,jdbcType=VARCHAR},
+      </if>
+      <if test="provinces != null">
+        provinces = #{provinces,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="zone != null">
+        zone = #{zone,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null">
+        consignee = #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="conTel != null">
+        con_tel = #{conTel,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryRemark != null">
+        delivery_remark = #{deliveryRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="companyNum != null">
+        company_num = #{companyNum,jdbcType=VARCHAR},
+      </if>
+      <if test="sendGoodsTime != null">
+        send_goods_time = #{sendGoodsTime,jdbcType=VARCHAR},
+      </if>
+      <if test="wayBillNo != null">
+        way_bill_no = #{wayBillNo,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticStatus != null">
+        logistic_status = #{logisticStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="consumeFlag != null">
+        consume_flag = #{consumeFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="storagetype != null">
+        storagetype = #{storagetype,jdbcType=INTEGER},
+      </if>
+      <if test="isHosAddr != null">
+        is_hos_addr = #{isHosAddr,jdbcType=INTEGER},
+      </if>
+      <if test="callbackUrl != null">
+        callback_url = #{callbackUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="classes != null">
+        classes = #{classes,jdbcType=INTEGER},
+      </if>
+      <if test="orderRemark != null">
+        order_remark = #{orderRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="isSzzy != null">
+        is_szzy = #{isSzzy,jdbcType=SMALLINT},
+      </if>
+      <if test="logisUrlCallback != null">
+        logis_url_callback = #{logisUrlCallback,jdbcType=VARCHAR},
+      </if>
+      <if test="customSign != null">
+        custom_sign = #{customSign,jdbcType=INTEGER},
+      </if>
+      <if test="layerNum != null">
+        layer_num = #{layerNum,jdbcType=SMALLINT},
+      </if>
+      <if test="message != null">
+        message = #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineCabNum != null">
+        medicine_cab_num = #{medicineCabNum,jdbcType=VARCHAR},
+      </if>
+      <if test="machineType != null">
+        machine_type = #{machineType,jdbcType=VARCHAR},
+      </if>
+      <if test="scanBatchUpdate != null">
+        scan_batch_update = #{scanBatchUpdate,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.micro.darren.order.entity.Order">
+    update dyf_order
+    set uid = #{uid,jdbcType=INTEGER},
+      shop_addr_id = #{shopAddrId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=SMALLINT},
+      pay_status = #{payStatus,jdbcType=SMALLINT},
+      recipe_pic_status = #{recipePicStatus,jdbcType=SMALLINT},
+      entry_id = #{entryId,jdbcType=INTEGER},
+      audit_id = #{auditId,jdbcType=INTEGER},
+      adjust_id = #{adjustId,jdbcType=INTEGER},
+      distribution_id = #{distributionId,jdbcType=INTEGER},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      order_weight = #{orderWeight,jdbcType=VARCHAR},
+      order_number = #{orderNumber,jdbcType=VARCHAR},
+      logistics_cost = #{logisticsCost,jdbcType=DECIMAL},
+      source_id = #{sourceId,jdbcType=INTEGER},
+      order_time = #{orderTime,jdbcType=VARCHAR},
+      treat_card = #{treatCard,jdbcType=VARCHAR},
+      reg_num = #{regNum,jdbcType=VARCHAR},
+      urgent_flag = #{urgentFlag,jdbcType=SMALLINT},
+      addr_str = #{addrStr,jdbcType=VARCHAR},
+      provinces = #{provinces,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      zone = #{zone,jdbcType=VARCHAR},
+      consignee = #{consignee,jdbcType=VARCHAR},
+      con_tel = #{conTel,jdbcType=VARCHAR},
+      delivery_remark = #{deliveryRemark,jdbcType=VARCHAR},
+      company_num = #{companyNum,jdbcType=VARCHAR},
+      send_goods_time = #{sendGoodsTime,jdbcType=VARCHAR},
+      way_bill_no = #{wayBillNo,jdbcType=VARCHAR},
+      logistic_status = #{logisticStatus,jdbcType=SMALLINT},
+      consume_flag = #{consumeFlag,jdbcType=SMALLINT},
+      storagetype = #{storagetype,jdbcType=INTEGER},
+      is_hos_addr = #{isHosAddr,jdbcType=INTEGER},
+      callback_url = #{callbackUrl,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      reason = #{reason,jdbcType=VARCHAR},
+      classes = #{classes,jdbcType=INTEGER},
+      order_remark = #{orderRemark,jdbcType=VARCHAR},
+      is_szzy = #{isSzzy,jdbcType=SMALLINT},
+      logis_url_callback = #{logisUrlCallback,jdbcType=VARCHAR},
+      custom_sign = #{customSign,jdbcType=INTEGER},
+      layer_num = #{layerNum,jdbcType=SMALLINT},
+      message = #{message,jdbcType=VARCHAR},
+      medicine_cab_num = #{medicineCabNum,jdbcType=VARCHAR},
+      machine_type = #{machineType,jdbcType=VARCHAR},
+      scan_batch_update = #{scanBatchUpdate,jdbcType=SMALLINT}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+</mapper>

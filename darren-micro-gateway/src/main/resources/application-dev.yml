@@ -1,0 +1,53 @@
+############## Zuul ##############
+#zuul: #http://127.0.0.1:8080/darren-micro-order/getList、http://127.0.0.1:8080/orders/getList
+#  routes:
+#    darren-micro-order: /orders/**
+#负载均衡
+ribbon:
+  eureka:
+    enabled: false #禁用Ribbon的Eureka支持 （也就是使用下面配置的listOfServers，而不是用Eureka的注册表）
+zuul:
+  #prefix: /darren #添加前缀   http://127.0.0.1:8080/darren/orders/getList、http://127.0.0.1:8080/darren/s/getUsers
+  #ignored-services: '*' #忽略直接访问serviceId，多个serviceId，使用逗号分隔，可以配置 '*' 通配符，忽略所有的serviceID,只能通过下面的路由才能访问
+  routes:
+    orders: #此值保持唯一即可（转发到订单微服务）
+      path: /orders/** #The route must have a path that can be specified as an ant-style pattern, so /myusers/* only matches one level, but /myusers/** matches hierarchically.
+      serviceId: darren-micro-order #spring.application.name
+    users: #此值保持唯一即可（转发到用户微服务）
+      path: /users/**
+      serviceId: darren-micro-user
+darren-micro-order: #spring.application.name
+  ribbon:
+    listOfServers: http://localhost:7771,http://localhost:7772 #被转发的微服务列表
+darren-micro-user:
+  ribbon:
+    listOfServers: http://localhost:7773,http://localhost:7774
+
+############## Mybatis ##############
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.micro.darren.gateway.entity
+spring:
+  datasource: #连接池   https://blog.csdn.net/tb_520/article/details/79676543（spring boot 2.1.0 新版配置）
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/new_km_dyf?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;autoReconnectForPools=true
+    username: root
+    password: sa1234
+
+############## Feign ##############
+feign:
+  hystrix:
+    enabled: true #默认是false。。。坑爹呀
+  httpclient:
+    connection-timeout: 60000
+  client:
+    config:
+      default:
+        connectTimeout: 60000
+        readTimeout: 60000
+        loggerLevel: full #full：记录请求和响应的标题，正文和元数据。
+#解决第一次请求超时问题（Hystrix默认的超时时间是1秒，如果超过这个时间尚未响应，将会进入fallback代码。而首次请求往往会比较慢（因为Spring的懒加载机制，要实例化一些类））
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 5000
+logging:
+  level:
+    com.micro.darren.gateway.feign.OrderFeignClient: debug  #打印此类的debug日志

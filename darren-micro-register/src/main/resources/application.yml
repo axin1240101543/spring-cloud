@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: darren-micro-register  #应用名称
+  security:
+    user:
+      name: root
+      password: 1234  #Eureka认证
+eureka:
+  server:
+    enable-self-preservation: false  #关闭Eureka自我保护模式（测试使用）
+---
+server:
+  port: 8761 #端口
+spring:
+  profiles: register1
+eureka:
+  environment: register1  #环境
+  instance:
+    hostname: register1  #主机名称
+    prefer-ip-address: true  #使用IP注册，而不是主机名称
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}  #instance id显示
+  client:
+    serviceUrl:
+      defaultZone: http://root:1234@register2:8762/eureka/,http://root:1234@register3:8763/eureka/  #注册到Eureka
+---
+server:
+  port: 8762
+spring:
+  profiles: register2
+eureka:
+  environment: register2
+  instance:
+    hostname: register2
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
+  client:
+    serviceUrl:
+      defaultZone: http://root:1234@register1:8761/eureka/,http://root:1234@register3:8763/eureka/
+---
+server:
+  port: 8763
+spring:
+  profiles: register3
+eureka:
+  environment: register3
+  instance:
+    hostname: register3
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
+  client:
+    serviceUrl:
+      defaultZone: http://root:1234@register1:8761/eureka/,http://root:1234@register2:8762/eureka/

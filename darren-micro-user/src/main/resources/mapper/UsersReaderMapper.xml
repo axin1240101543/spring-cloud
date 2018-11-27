@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.micro.darren.user.dao.read.UsersReaderDao">
+  <resultMap id="BaseResultMap" type="User">
+    <id column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="gender" jdbcType="SMALLINT" property="gender" />
+    <result column="regdate" jdbcType="TIMESTAMP" property="regdate" />
+    <result column="lastvisit" jdbcType="TIMESTAMP" property="lastvisit" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="bday" jdbcType="DATE" property="bday" />
+    <result column="addr" jdbcType="VARCHAR" property="addr" />
+    <result column="stand_addr" jdbcType="VARCHAR" property="standAddr" />
+    <result column="stand_addr2" jdbcType="VARCHAR" property="standAddr2" />
+    <result column="stand_addr3" jdbcType="VARCHAR" property="standAddr3" />
+    <result column="identifying" jdbcType="VARCHAR" property="identifying" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="headimg" jdbcType="VARCHAR" property="headimg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uid, username, password, gender, regdate, lastvisit, city, tel, email, bday, addr, 
+    stand_addr, stand_addr2, stand_addr3, identifying, status, real_name, headimg
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dyf_users
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+
+  <select id="getUsers" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dyf_users limit 10
+  </select>
+</mapper>

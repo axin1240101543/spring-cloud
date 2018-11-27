@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: darren-micro-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/mycode2018/darren-micro-config #使用https地址，而不是ssh地址
+          username:  #git私有工程需要使用帐号密码
+          password:
+          search-paths: '{application}' #搜索路径通配符
+          clone-on-start: true #是否在启动时拉去配置，而不是在请求时。默认是false（请求时）
+  security:
+    user:
+      name: root #使用Config Server进行身份验证   https://cloud.spring.io/spring-cloud-static/Finchley.SR2/single/spring-cloud.html#_security
+      password: 1234
+  rabbitmq: #使用rabbitmq来自动刷新配置 （curl -v -X POST http://localhost:8764/actuator/bus-refresh，开启spring.security.user.name/password后，可以通过postman来进行认证） https://ask.csdn.net/questions/684123
+    host: localhost #mq的主机、端口、帐号、密码
+    port: 5672
+    username: guest
+    password: guest
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" #开启所有访问端点
+
+############## 对称加密 ##############
+#加密：curl -X POST http://localhost:8764/encrypt -d 要加密的key
+#解密：curl -X POST http://localhost:8764/decrypt -d 加密后的key
+#encrypt:
+#  key: 123456
+
+############## 使用RSA算法进行非对称加密##############
+encrypt:
+  key-store:
+    location: classpath:/server.jks #秘钥库   jks文件生成：keytool -genkeypair -alias mytestkey -keyalg RSA -dname "CN=Web Server,OU=Unit,O=Organization,L=City,S=State,C=US" -keypass changeme -keystore server.jks -storepass letmein
+    alias: mytestkey #别名
+    secret: changeme #秘钥库的口令
+    password: letmein #秘钥库的口令

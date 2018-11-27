@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property name="PROJECT_NAME" value="darren-micro-order"/><!-- 项目名称 -->
+    <property name="LOG_HOME" value="D:/logs"/><!-- 日志路径 -->
+
+    <!-- 控制台日志 -->
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+		    <!-- 红色(时间) 高亮 (日志级别(五个字符宽度)) 绿色(线程)  蓝绿色(类信息和行信息) 具体日志信息    换行符 -->
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %green(%-5level) --- [%thread] %cyan([%logger{16}:%line]) : %msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+	
+	<!-- INFO日志 -->
+	<appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	    <file>${LOG_HOME}/${PROJECT_NAME}/info.out</file><!-- 日志路径 -->
+		<encoder>
+			<pattern>%date [%-5level] [%thread] [%logger{16} : %line] - %msg%n</pattern><!-- 日志格式 -->
+			<charset>UTF-8</charset>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 日志过滤器 -->
+		    <level>INFO</level><!-- 过滤级别 -->
+		    <onMatch>ACCEPT</onMatch><!-- 匹配时：接受 -->
+		    <onMismatch>DENY</onMismatch><!-- 不匹配时：拒绝 -->
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"><!-- 滚动策略 -->
+			<fileNamePattern>${LOG_HOME}/${PROJECT_NAME}/info_%d{yyyy-MM-dd}.log</fileNamePattern><!-- 按天滚动 -->
+			<MaxHistory>30</MaxHistory><!-- 历史日志保留时间（单位：天） -->
+		</rollingPolicy>
+	</appender>
+	
+	<!-- ERROR日志 -->
+	<appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	    <file>${LOG_HOME}/${PROJECT_NAME}/error.out</file><!-- 日志路径 -->
+		<encoder>
+			<pattern>%date [%-5level] [%thread] [%logger{16} : %line] - %msg%n</pattern><!-- 日志格式 -->
+			<charset>UTF-8</charset>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 日志过滤器 -->
+		    <level>ERROR</level><!-- 过滤级别 -->
+		    <onMatch>ACCEPT</onMatch><!-- 匹配时：接受 -->
+		    <onMismatch>DENY</onMismatch><!-- 不匹配时：拒绝 -->
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"><!-- 滚动策略 -->
+			<fileNamePattern>${LOG_HOME}/${PROJECT_NAME}/error_%d{yyyy-MM-dd}.log</fileNamePattern><!-- 按天滚动 -->
+			<MaxHistory>30</MaxHistory><!-- 历史日志保留时间（单位：天） -->
+		</rollingPolicy>
+	</appender>
+	
+	
+	<!-- 优先级： appender里filter的level(开启DENY的情况下) > logger的level > root的level -->
+	<logger name="com.micro.darren" level="DEBUG" />
+	<!-- 开发 -->
+	 <springProfile name="dev">
+	    <root level="INFO">
+			<appender-ref ref="CONSOLE" />
+		</root>
+	</springProfile>
+	<!-- 生产 -->
+	 <springProfile name="prod">
+	    <root level="INFO">
+			<appender-ref ref="INFO" />
+			<appender-ref ref="ERROR" />
+		</root>
+	</springProfile>
+	<root level="INFO">
+	    <appender-ref ref="CONSOLE" />
+		<appender-ref ref="INFO" />
+		<appender-ref ref="ERROR" />
+	</root>
+</configuration>

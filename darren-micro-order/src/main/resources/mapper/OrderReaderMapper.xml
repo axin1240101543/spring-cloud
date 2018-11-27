@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.micro.darren.order.dao.read.OrderReaderDao">
+  <resultMap id="BaseResultMap" type="com.micro.darren.order.entity.Order">
+    <id column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="shop_addr_id" jdbcType="INTEGER" property="shopAddrId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="pay_status" jdbcType="SMALLINT" property="payStatus" />
+    <result column="recipe_pic_status" jdbcType="SMALLINT" property="recipePicStatus" />
+    <result column="entry_id" jdbcType="INTEGER" property="entryId" />
+    <result column="audit_id" jdbcType="INTEGER" property="auditId" />
+    <result column="adjust_id" jdbcType="INTEGER" property="adjustId" />
+    <result column="distribution_id" jdbcType="INTEGER" property="distributionId" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="order_weight" jdbcType="VARCHAR" property="orderWeight" />
+    <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+    <result column="logistics_cost" jdbcType="DECIMAL" property="logisticsCost" />
+    <result column="source_id" jdbcType="INTEGER" property="sourceId" />
+    <result column="order_time" jdbcType="VARCHAR" property="orderTime" />
+    <result column="treat_card" jdbcType="VARCHAR" property="treatCard" />
+    <result column="reg_num" jdbcType="VARCHAR" property="regNum" />
+    <result column="urgent_flag" jdbcType="SMALLINT" property="urgentFlag" />
+    <result column="addr_str" jdbcType="VARCHAR" property="addrStr" />
+    <result column="provinces" jdbcType="VARCHAR" property="provinces" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="zone" jdbcType="VARCHAR" property="zone" />
+    <result column="consignee" jdbcType="VARCHAR" property="consignee" />
+    <result column="con_tel" jdbcType="VARCHAR" property="conTel" />
+    <result column="delivery_remark" jdbcType="VARCHAR" property="deliveryRemark" />
+    <result column="company_num" jdbcType="VARCHAR" property="companyNum" />
+    <result column="send_goods_time" jdbcType="VARCHAR" property="sendGoodsTime" />
+    <result column="way_bill_no" jdbcType="VARCHAR" property="wayBillNo" />
+    <result column="logistic_status" jdbcType="SMALLINT" property="logisticStatus" />
+    <result column="consume_flag" jdbcType="SMALLINT" property="consumeFlag" />
+    <result column="storagetype" jdbcType="INTEGER" property="storagetype" />
+    <result column="is_hos_addr" jdbcType="INTEGER" property="isHosAddr" />
+    <result column="callback_url" jdbcType="VARCHAR" property="callbackUrl" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="classes" jdbcType="INTEGER" property="classes" />
+    <result column="order_remark" jdbcType="VARCHAR" property="orderRemark" />
+    <result column="is_szzy" jdbcType="SMALLINT" property="isSzzy" />
+    <result column="logis_url_callback" jdbcType="VARCHAR" property="logisUrlCallback" />
+    <result column="custom_sign" jdbcType="INTEGER" property="customSign" />
+    <result column="layer_num" jdbcType="SMALLINT" property="layerNum" />
+    <result column="message" jdbcType="VARCHAR" property="message" />
+    <result column="medicine_cab_num" jdbcType="VARCHAR" property="medicineCabNum" />
+    <result column="machine_type" jdbcType="VARCHAR" property="machineType" />
+    <result column="scan_batch_update" jdbcType="SMALLINT" property="scanBatchUpdate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_id, uid, shop_addr_id, create_time, status, pay_status, recipe_pic_status, 
+    entry_id, audit_id, adjust_id, distribution_id, end_date, order_weight, order_number, 
+    logistics_cost, source_id, order_time, treat_card, reg_num, urgent_flag, addr_str, 
+    provinces, city, zone, consignee, con_tel, delivery_remark, company_num, send_goods_time, 
+    way_bill_no, logistic_status, consume_flag, storagetype, is_hos_addr, callback_url, 
+    modify_time, reason, classes, order_remark, is_szzy, logis_url_callback, custom_sign, 
+    layer_num, message, medicine_cab_num, machine_type, scan_batch_update
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dyf_order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+</mapper>
