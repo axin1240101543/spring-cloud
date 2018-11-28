@@ -17,6 +17,6 @@ public class JsonResult implements Serializable{
 
     @Override
     public String toString() {
-        return super.toString();
+        return "JsonResult [resultCode=" + resultCode + ", resultMessage=" + resultMessage + ", data=" + data + "]";
     }
 }

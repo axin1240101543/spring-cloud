@@ -6,7 +6,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
-@WebService(targetNamespace = "http://darren.micro.com/")
+@WebService(targetNamespace = "http://order.webservice.gateway.darren.micro.com/")
 public interface IOrderService {
 
     /**
