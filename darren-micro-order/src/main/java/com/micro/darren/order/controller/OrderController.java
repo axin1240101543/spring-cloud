@@ -1,6 +1,7 @@
 package com.micro.darren.order.controller;
 
 import com.micro.darren.common.entity.JsonResult;
+import com.micro.darren.common.utils.XmlUtils;
 import com.micro.darren.order.entity.Order;
 import com.micro.darren.order.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
@@ -30,10 +31,7 @@ public class OrderController {
     @PostMapping("/getOrderById")
     public JsonResult getOrderById(@RequestBody String params){
         log.info("接口名称:{}, 请求参数：{}", "getOrderById", params);
-        //使用Jsoup解析xml
-        Document document = Jsoup.parse(params);
-        Element element = document.getElementsByTag("orderId").first();
-        String orderId = element.html();
+        String orderId = XmlUtils.getStringFirstToXml2Jsoup(params, "orderId");
         Order order = orderService.getOrderById(orderId);
         log.info("接口名称:{}, 响应参数：{}", "getOrderById", order);
         JsonResult result = new JsonResult();

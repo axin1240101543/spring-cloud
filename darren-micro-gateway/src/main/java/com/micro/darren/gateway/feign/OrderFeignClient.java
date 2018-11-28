@@ -2,6 +2,7 @@ package com.micro.darren.gateway.feign;
 
 import com.micro.darren.common.entity.JsonResult;
 import com.micro.darren.gateway.feign.fallbackfactory.HystrixClientFallbackFactory;
+import org.json.JSONObject;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
