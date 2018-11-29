@@ -23,6 +23,9 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ * webservice切面类
+ */
 @Aspect
 @Component
 @Order(1)  //标记定义了组件的加载顺序，值越小拥有越高的优先级。

@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
+/**
+ * 日志切面类
+ */
 @Aspect
 @Component
 @Order(0)  //标记定义了组件的加载顺序，值越小拥有越高的优先级。

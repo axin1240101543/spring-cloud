@@ -6,6 +6,7 @@ import org.json.XML;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 /**
  * xml处理类
@@ -64,6 +65,18 @@ public class XmlUtils {
     public static String getStringFirstToXml2Jsoup(String xml, String firstParam){
         Document document = Jsoup.parse(xml);
         Element element = document.getElementsByTag(firstParam).first();
+        return element.html();
+    }
+
+    /**
+     * 通过Jsoup来解析xml
+     * @param xml
+     * @param node
+     * @return
+     */
+    public static String getStringToXml2Jsoup(String xml, String node){
+        Document document = Jsoup.parse(xml);
+        Elements element = document.getElementsByTag(node);
         return element.html();
     }
 
