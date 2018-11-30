@@ -19,12 +19,12 @@ public class ConfigController {
     private String test;
 
     @GetMapping("/getConfig")
-    public String getConfig(){
+    public String getConfig() {
         return "获取配置内容：" + port + " " + defaultZone;
     }
 
     @GetMapping("/test")
-    public String test(){
+    public String test() {
         return test;
     }
 

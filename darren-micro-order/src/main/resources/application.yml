@@ -1,0 +1,3 @@
+############## Config（从config server获取全部配置） ##############
+server:
+  port: 7772  #端口

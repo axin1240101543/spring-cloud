@@ -36,7 +36,7 @@ feign:
         readTimeout: 60000
         loggerLevel: full #full：记录请求和响应的标题，正文和元数据。
 #解决第一次请求超时问题（Hystrix默认的超时时间是1秒，如果超过这个时间尚未响应，将会进入fallback代码。而首次请求往往会比较慢（因为Spring的懒加载机制，要实例化一些类））
-hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 5000
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 10000
 logging:
   level:
     com.micro.darren.gateway.feign.OrderFeignClient: debug  #打印此类的debug日志

@@ -1,12 +1,3 @@
-############## Base Config ##############
+############## Config（从config server获取全部配置） ##############
 server:
-  port: ${server.port}  #端口
-eureka:
-  client:
-    service-url:
-      defaultZone: ${eureka.client.service-url.defaultZone} #注册到Eureka
-    healthcheck:
-      enabled: ${eureka.client.healthcheck.enabled} #开启健康检查
-  instance:
-    instance-id: ${eureka.instance.instance-id}   #instance id显示
-    prefer-ip-address: ${eureka.instance.prefer-ip-address} #使用ip注册到Eureka，而不是主机名称
+  port: 7773

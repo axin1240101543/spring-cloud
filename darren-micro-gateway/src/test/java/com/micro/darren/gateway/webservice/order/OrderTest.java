@@ -20,7 +20,7 @@ public class OrderTest {
     @Autowired
     private ApplicationContext applicationContext;
 
-    @Test
+    /*@Test
     public void getOrderById() throws Exception{
         Context context = new Context();
         HttpUtils httpUtils = new HttpUtilsImpl();
@@ -46,7 +46,7 @@ public class OrderTest {
         result = StringEscapeUtils.unescapeXml(result);
         result = XmlUtils.getStringToXml2Jsoup(result, "return");
         System.out.println(result);
-    }
+    }*/
 
     /*@Test
     public void getApiInfoList() throws Exception{

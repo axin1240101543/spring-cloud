@@ -1,6 +1,4 @@
 ############## Base Config ##############
-server:
-  port: 7771  #端口
 eureka:
   client:
     service-url:
@@ -24,6 +22,9 @@ spring:
       profile: dev #{profile}：which maps to spring.profiles.active on the client (comma-separated list).
       username: root #（认证config server，优先级比url style高）
       password: 1234
+    bus:
+      trace:
+        enabled: true #Bus events (subclasses of RemoteApplicationEvent) can be traced
 
 #使用uri去spring cloud server 获取配置
 #spring:
@@ -36,3 +37,6 @@ spring:
 #      profile: dev #{profile}：which maps to spring.profiles.active on the client (comma-separated list).
 #      username: root #（认证config server，优先级比url style高）
 #      password: 1234
+#    bus:
+#      trace:
+#        enabled: true #Bus events (subclasses of RemoteApplicationEvent) can be traced

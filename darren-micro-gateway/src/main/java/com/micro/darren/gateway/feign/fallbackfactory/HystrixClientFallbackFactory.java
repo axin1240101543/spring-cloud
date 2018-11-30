@@ -23,8 +23,8 @@ public class HystrixClientFallbackFactory implements FallbackFactory<OrderFeignC
             public JsonResult getOrderById(String params) {
                 log.error("进入Feign断路器，异常原因:", throwable);
                 JsonResult result = new JsonResult();
-                result.setResultCode(HttpStatus.REQUEST_TIMEOUT.value());
-                result.setResultMessage(HttpStatus.REQUEST_TIMEOUT.getReasonPhrase());
+                result.setResultCode(HttpStatus.FORBIDDEN.value());
+                result.setResultMessage(throwable.getMessage());
                 return result;
             }
         };
