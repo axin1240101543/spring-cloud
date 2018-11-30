@@ -18,7 +18,9 @@ eureka:
   instance:
     hostname: register1  #主机名称
     prefer-ip-address: true  #使用IP注册，而不是主机名称
-    instance-id: ${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}  #instance id显示
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}} #instance id显示
+    lease-renewal-interval-in-seconds: 5 #心跳时间，默认30second
+    lease-expiration-duration-in-seconds: 10 #剔除服务时间，默认90second
   client:
     serviceUrl:
       defaultZone: http://root:1234@register2:8762/eureka/,http://root:1234@register3:8763/eureka/  #注册到Eureka
@@ -33,6 +35,8 @@ eureka:
     hostname: register2
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
   client:
     serviceUrl:
       defaultZone: http://root:1234@register1:8761/eureka/,http://root:1234@register3:8763/eureka/
@@ -47,6 +51,8 @@ eureka:
     hostname: register3
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
   client:
     serviceUrl:
       defaultZone: http://root:1234@register1:8761/eureka/,http://root:1234@register2:8762/eureka/
