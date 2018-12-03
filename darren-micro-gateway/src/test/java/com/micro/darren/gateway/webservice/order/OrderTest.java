@@ -5,6 +5,7 @@ import com.micro.darren.common.constants.Context;
 import com.micro.darren.common.utils.XmlUtils;
 import com.micro.darren.common.http.HttpUtils;
 import com.micro.darren.common.http.HttpUtilsImpl;
+import com.micro.darren.gateway.controller.ApiController;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class OrderTest {
     @Autowired
     private ApplicationContext applicationContext;
 
-    /*@Test
+    @Test
     public void getOrderById() throws Exception{
         Context context = new Context();
         HttpUtils httpUtils = new HttpUtilsImpl();
@@ -46,13 +47,13 @@ public class OrderTest {
         result = StringEscapeUtils.unescapeXml(result);
         result = XmlUtils.getStringToXml2Jsoup(result, "return");
         System.out.println(result);
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void getApiInfoList() throws Exception{
         ApiController apiController = applicationContext.getBean(ApiController.class);
         String result = apiController.getApiInfoList();
         System.out.println(result);
-    }*/
+    }
 
 }

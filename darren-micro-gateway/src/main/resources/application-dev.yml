@@ -16,6 +16,9 @@ zuul:
     users: #此值保持唯一即可（转发到用户微服务）
       path: /users/**
       serviceId: darren-micro-user
+  host:
+    max-total-connections: 200 #默认值
+    max-per-route-connections: 20 #默认值
 darren-micro-order: #spring.application.name
   ribbon:
     listOfServers: http://localhost:7771,http://localhost:7772 #被转发的微服务列表
@@ -29,6 +32,8 @@ feign:
     enabled: true #默认是false。。。坑爹呀
   httpclient:
     connection-timeout: 60000
+    max-connections: 200 #默认值
+    max-connections-per-route: 50 #默认值
   client:
     config:
       default:
