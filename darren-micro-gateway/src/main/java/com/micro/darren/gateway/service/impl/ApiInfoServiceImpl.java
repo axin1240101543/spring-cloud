@@ -22,4 +22,29 @@ public class ApiInfoServiceImpl implements ApiInfoService{
         params.put("status", 64);
         return apiInfoReaderDao.getApiInfoList(params);
     }
+
+    @Override
+    public List<ApiInfo> getApiInfoListToClass() {
+        return apiInfoReaderDao.getApiInfoListToClass();
+    }
+
+    @Override
+    public List<ApiInfo> getApiInfoListToClassByType(String type) {
+        return apiInfoReaderDao.getApiInfoListToClassByType(type);
+    }
+
+    @Override
+    public List<ApiInfo> getApiInfoListToClassResult() {
+        return apiInfoReaderDao.getApiInfoListToClassResult();
+    }
+
+    @Override
+    public ApiInfo getApiInfoListToClassById(Long id) {
+        return apiInfoReaderDao.getApiInfoListToClassById(id);
+    }
+
+    @Override
+    public List<ApiInfo> getgetApiInfoListToClassByTypeAndName(String type, String name) {
+        return apiInfoReaderDao.getgetApiInfoListToClassByTypeAndName(type, name);
+    }
 }

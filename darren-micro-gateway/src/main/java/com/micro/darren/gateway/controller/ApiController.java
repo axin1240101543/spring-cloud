@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.websocket.server.PathParam;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -41,6 +43,43 @@ public class ApiController {
         List<ApiInfo> list = apiInfoService.getApiInfoList();
         return JSONObject.toJSONString(list);
     }
+
+    @GetMapping("/getApiInfoListToClass")
+    @ResponseBody
+    public String getApiInfoListToClass(){
+        List<ApiInfo> list = apiInfoService.getApiInfoListToClass();
+        return JSONObject.toJSONString(list);
+    }
+
+    @GetMapping("/getApiInfoListToClassByType")
+    @ResponseBody
+    public String getApiInfoListToClassByType(@PathParam("type") String type){
+        List<ApiInfo> list = apiInfoService.getApiInfoListToClassByType(type);
+        return JSONObject.toJSONString(list);
+    }
+
+    @GetMapping("/getApiInfoListToClassResult")
+    @ResponseBody
+    public String getApiInfoListToClassResult(){
+        List<ApiInfo> list = apiInfoService.getApiInfoListToClassResult();
+        return JSONObject.toJSONString(list);
+    }
+
+    @GetMapping("/getApiInfoListToClassById")
+    @ResponseBody
+    public String getApiInfoListToClassById(@PathParam("id") Long id){
+        ApiInfo apiInfo = apiInfoService.getApiInfoListToClassById(id);
+        return JSONObject.toJSONString(apiInfo);
+    }
+
+
+    @GetMapping("/getgetApiInfoListToClassByTypeAndName")
+    @ResponseBody
+    public String getgetApiInfoListToClassByTypeAndName(@PathParam("type")String type, @PathParam("name")String name){
+        List<ApiInfo> list = apiInfoService.getgetApiInfoListToClassByTypeAndName(type, name);
+        return JSONObject.toJSONString(list);
+    }
+
 
     @GetMapping("/getRedisValue")
     @ResponseBody
